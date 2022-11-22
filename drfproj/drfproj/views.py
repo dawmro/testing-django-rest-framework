@@ -10,7 +10,8 @@ class TesView(APIView):
 
     def get(self, request, *args, **kwargs):
         query_set = Student.objects.all()
-        serializer = StudentSerializer(query_set, many=True)
+        first_student = query_set.first()
+        serializer = StudentSerializer(first_student)
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
